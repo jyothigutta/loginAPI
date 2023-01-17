@@ -35,4 +35,18 @@ class UserController < ApplicationController
         end
     end
 
+    def destroy
+        u=User.find(params[:id].to_i)
+        u.destroy
+        render json: "User Account has been deleted!"
+    rescue => e
+        render json: "User not found. Kindly input correct data."
+    end
+
+    def update
+        u = User.find(params[:id].to_i)
+        u.update('password': params[:password])
+        render json: "Password updated"
+    end
+
 end
